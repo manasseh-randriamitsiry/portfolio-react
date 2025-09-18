@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 import { Pagination } from "swiper";
@@ -81,11 +81,12 @@ const WorkSlider = () => {
               >
                 <div className="flex items-center justify-center relative overflow-hidden group">
                   {/* image */}
-                  <Image
+                  <img
                     src={image.path}
                     alt={image.title}
                     width={500}
                     height={300}
+                    className="w-full h-full object-cover"
                   />
 
                   {/* overlay gradient */}

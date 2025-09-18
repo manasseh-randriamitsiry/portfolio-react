@@ -6,11 +6,5 @@
   package = "@netlify/plugin-nextjs"
 
 [build.environment]
-  NEXT_PRIVATE_TARGET = "server"
   NODE_VERSION = "18"
-
-# Handle Next.js routing
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  NPM_FLAGS = "--legacy-peer-deps"
