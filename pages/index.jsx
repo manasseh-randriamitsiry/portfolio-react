@@ -18,9 +18,10 @@ const Home = () => {
             initial="hidden"
             animate="show"
             exit="hidden"
-            className="h1"
+            className="h2"
           >
-            Hi, I'm <br /> Manassé{" "}
+            Hi, Manassé{" "}
+            <span className="text-accent h5">Full Stack Developer</span>
           </motion.h1>
 
           {/* subtitle */}
