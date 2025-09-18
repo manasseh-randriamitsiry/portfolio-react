@@ -1,10 +1,9 @@
 import { motion } from "framer-motion";
 import { BsArrowRight } from "react-icons/bs";
-
 import { fadeIn } from "../../variants";
 import { useState } from "react";
 
-const Contact = () => {
+const ContactFormspree = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
 
@@ -14,23 +13,25 @@ const Contact = () => {
     setMessage('');
 
     const formData = new FormData(event.target);
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      subject: formData.get('subject'),
-      message: formData.get('message')
-    };
 
     try {
-      // Simple mailto link as fallback
-      const mailtoLink = `mailto:manassehrandriamitsiry@gmail.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\n\nMessage: ${data.message}`)}`;
-      window.location.href = mailtoLink;
-      
-      setMessage('Opening your email client... If it doesn\'t open automatically, please email me directly at manassehrandriamitsiry@gmail.com');
-      event.target.reset();
+      const response = await fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setMessage('Thank you! Your message has been sent successfully. I will get back to you ASAP.');
+        event.target.reset();
+      } else {
+        throw new Error('Form submission failed');
+      }
     } catch (error) {
       console.error('Error:', error);
-      setMessage('Please contact me directly at manassehrandriamitsiry@gmail.com or call +261(34) 29 439 71');
+      setMessage('Sorry, there was an error sending your message. Please contact me directly at manassehrandriamitsiry@gmail.com');
     } finally {
       setIsLoading(false);
     }
@@ -77,7 +78,11 @@ const Contact = () => {
               initial="hidden"
               animate="show"
               exit="hidden"
-              className="text-center p-4 rounded-lg mb-6 bg-blue-500/20 text-blue-400 border border-blue-500/30"
+              className={`text-center p-4 rounded-lg mb-6 ${
+                message.includes('successfully') 
+                  ? 'bg-green-500/20 text-green-400 border border-green-500/30' 
+                  : 'bg-red-500/20 text-red-400 border border-red-500/30'
+              }`}
             >
               <p>{message}</p>
             </motion.div>
@@ -91,8 +96,6 @@ const Contact = () => {
             exit="hidden"
             className="flex-1 flex flex-col gap-6 w-full mx-auto"
             onSubmit={handleSubmit}
-            autoComplete="off"
-            autoCapitalize="off"
           >
             {/* input group */}
             <div className="flex gap-x-6 w-full">
@@ -102,48 +105,44 @@ const Contact = () => {
                 placeholder="Name"
                 className="input"
                 disabled={isLoading}
-                aria-disabled={isLoading}
                 required
-                aria-required
               />
               <input
                 type="email"
-                name="email"
+                name="_replyto"
                 placeholder="E-mail"
                 className="input"
                 disabled={isLoading}
-                aria-disabled={isLoading}
                 required
-                aria-required
               />
             </div>
             <input
               type="text"
-              name="subject"
+              name="_subject"
               placeholder="Subject"
               className="input"
               disabled={isLoading}
-              aria-disabled={isLoading}
               required
-              aria-required
             />
             <textarea
               name="message"
               placeholder="Message..."
               className="textarea"
               disabled={isLoading}
-              aria-disabled={isLoading}
               required
-              aria-required
             />
+            
+            {/* Hidden fields for Formspree */}
+            <input type="hidden" name="_next" value="thank-you" />
+            <input type="hidden" name="_captcha" value="false" />
+            
             <button
               type="submit"
               className="btn rounded-full border border-white/50 max-w-[170px] px-8 transition-all duration-300 flex items-center justify-center overflow-hidden hover:border-accent group"
               disabled={isLoading}
-              aria-disabled={isLoading}
             >
               <span className="group-hover:-translate-y-[120%] group-hover:opacity-0 transition-all duration-500">
-                {isLoading ? 'Processing...' : "Let's talk"}
+                {isLoading ? 'Sending...' : "Let's talk"}
               </span>
 
               <BsArrowRight
@@ -158,4 +157,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactFormspree;
