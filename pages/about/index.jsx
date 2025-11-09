@@ -63,21 +63,17 @@ export const aboutData = [
   {
     title: "experience",
     info: [
+     {
+        title: "Full-Stack Developer - Freelancer ASANA",
+        stage: " May 2024 - Present",
+      },
       {
         title: "Full-Stack Software Developer - LJSA Ambalavao",
-        stage: "2021",
+        stage: "July 2021 - October 2021",
       },
       {
         title: "Flutter Mobile Application Developer - Gasisakara Digital",
-        stage: "2022 - Present",
-      },
-      {
-        title: "Full-Stack Developer & Project Lead - Freelance",
-        stage: "2020 - Present",
-      },
-      {
-        title: "Mobile Developer - Flutter Freelancer",
-        stage: "2021 - Present",
+        stage: "October 2023 - Mars 2024",
       },
     ],
   },
@@ -85,11 +81,11 @@ export const aboutData = [
     title: "education",
     info: [
       {
-        title: "Master Professionnel en Informatique - ENI",
+        title: "Master's Degree in Computer Science - ENI",
         stage: "2022 - 2024",
       },
       {
-        title: "Licence Professionnelle en Informatique - ENI",
+        title: "Bachelor's Degree in Computer Science - ENI",
         stage: "2018 - 2022",
       },
     ],
@@ -103,7 +99,7 @@ export const aboutData = [
       },
       {
         title: "Fihirana JFF - Mobile App (500+ users)",
-        stage: "2022",
+        stage: "2024",
       },
       {
         title: "Car Rental Management System - Angular & Express.js",
@@ -124,16 +120,22 @@ const About = () => {
     <div className="h-full bg-primary/30 py-32 text-center xl:text-left">
       <Circles />
 
-      {/* avatar img */}
+      {/* background avatar img */}
       <motion.div
         variants={fadeIn("right", 0.2)}
         initial="hidden"
         animate="show"
         exit="hidden"
-        className="hidden xl:flex absolute bottom-0 -left-[370px]"
-      >
-        <Avatar />
-      </motion.div>
+        className="absolute inset-0 z-[-1] hidden xl:block"
+        style={{
+          backgroundImage: "url('/avatar.png')",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "right bottom",
+        }}
+      ></motion.div>
+
+
 
       <div className="container mx-auto h-full flex flex-col items-center xl:flex-row gap-x-6">
         {/* text */}
@@ -181,7 +183,7 @@ const About = () => {
               {/* clients */}
               <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
                 <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={18} duration={5} />
+                  <CountUp start={0} end={30} duration={5} />
                 </div>
                 <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
                   Public repositories.

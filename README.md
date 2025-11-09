@@ -73,16 +73,6 @@ manasse-portfolio/
 
 4. Now app is fully configured 👍 and you can start using this app using `npm run dev` or `yarn dev`.
 
-## :camera: Screenshots:
-
-![Modern UI/UX](/.github/images/img1.png "Modern UI/UX")
-
-![Services](/.github/images/img2.png "Services")
-
-![Showcase Projects](/.github/images/img3.png "Showcase Projects")
-
-![Contact Form](/.github/images/img4.png "Contact Form")
-
 ## :gear: Tech Stack
 
 This portfolio is built with modern web technologies:
@@ -98,7 +88,6 @@ Feel free to reach out if you'd like to collaborate or have any questions:
 - **Location**: Fianarantsoa, Madagascar
 - **GitHub**: [manasseh-randriamitsiry](https://github.com/manasseh-randriamitsiry)
 - **LinkedIn**: [Manasseh Randriamitsiry](https://www.linkedin.com/in/manasseh-randriamitsiry-2b76821b6)
-
 
 
 ## :books: Learn More
